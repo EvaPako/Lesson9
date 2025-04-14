@@ -1,3 +1,5 @@
+import io.restassured.RestAssured;
+import io.restassured.parsing.Parser;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
 
@@ -72,26 +74,53 @@ public class EchoTest {
 
     @Test
     public void putRequest () {
+
+        String text = "This is expected to be sent back as part of response body.";
+        String text1 = "This is expected to be sent back as part of response body.";
+
         given()
+
                 .spec(BaseTest.baseSpecificationBefore())
-                .expect()
-                .spec(BaseTest.baseSpecificationAfter200()).log().all();
+                .body(text)
+                .when().put("put")
+                .then()
+                .body("data", equalTo(text1))
+                .body("url", equalTo("https://postman-echo.com/put"))
+                .spec(BaseTest.baseSpecificationAfter200());
     }
 
 
     @Test
     public void patchRequest () {
+        String text = "This is expected to be sent back as part of response body.";
+        String text1 = "This is expected to be sent back as part of response body.";
         given()
+
                 .spec(BaseTest.baseSpecificationBefore())
-                .expect()
-                .spec(BaseTest.baseSpecificationAfter200()).log().all();
+                .body(text)
+                .when().patch("patch")
+                .then()
+                .body("data", equalTo(text1))
+                .body("url", equalTo("https://postman-echo.com/patch"))
+                .spec(BaseTest.baseSpecificationAfter200());
     }
+
     @Test
     public void deleteRequest () {
+        RestAssured.defaultParser = Parser.JSON;
+
+        String text = "This is expected to be sent back as part of response body.";
+        String text1 = "This is expected to be sent back as part of response body.";
         given()
+
                 .spec(BaseTest.baseSpecificationBefore())
-                .expect()
-                .spec(BaseTest.baseSpecificationAfter200()).log().all();
+                //.body(text)
+                .when().patch("delete")
+                .then()
+                //.body("arg",equalTo("<{}>"))
+                .body("data", equalTo(text1))
+                .body("url", equalTo("https://postman-echo.com/delete"))
+                .spec(BaseTest.baseSpecificationAfter200());
     }
 
     }
