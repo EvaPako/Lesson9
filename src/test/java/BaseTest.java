@@ -8,9 +8,9 @@ public class BaseTest {
 
     public static RequestSpecification baseSpecificationBefore(){
         RequestSpecification requestSpecification = given()
-            .baseUri("https://postman-echo.com/")
+                .baseUri("https://postman-echo.com/")
                 .header("cookie", "sails.sid=s%3APXHN5mD2WkbF25Okv-Nc5g7j58Cm_3Rh.xQLAzKbrjotaVT1c%2FgP9nmCgvsA0Zg4AbjQo38ZofXQ");
-            return requestSpecification;
+        return requestSpecification;
     }
 
     public static ResponseSpecification baseSpecificationAfter200 () {
@@ -23,3 +23,4 @@ public class BaseTest {
         return responseSpecification;
     }
 }
+

@@ -35,23 +35,23 @@ public class EchoTest {
                 //.log().all()
                 .spec(BaseTest.baseSpecificationAfter200());
 
-        }
-        @Test
-        public void postRawText() {
+    }
+    @Test
+    public void postRawText() {
 
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("test", "value");
-            String jsonString = jsonObject.toString();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("test", "value");
+        String jsonString = jsonObject.toString();
 
-            given()
-                    .spec(BaseTest.baseSpecificationBefore())
-                    .body(jsonString)
-                    .when().post("post")
-                    .then()
-                    //.log().body()
-                    .body("data", equalTo(jsonString))
-                    .body("url", equalTo("https://postman-echo.com/post"))
-                    .spec(BaseTest.baseSpecificationAfter200());
+        given()
+                .spec(BaseTest.baseSpecificationBefore())
+                .body(jsonString)
+                .when().post("post")
+                .then()
+                //.log().body()
+                .body("data", equalTo(jsonString))
+                .body("url", equalTo("https://postman-echo.com/post"))
+                .spec(BaseTest.baseSpecificationAfter200());
     }
 
     @Test
@@ -59,7 +59,6 @@ public class EchoTest {
         HashMap <String,String> testData = new HashMap<>();
         testData.put ("foo1","bar1");
         testData.put ("foo2","bar2");
-
 
         String testDataString = testData.toString();
 
@@ -125,5 +124,5 @@ public class EchoTest {
                 .spec(BaseTest.baseSpecificationAfter200());
     }
 
-    }
+}
 
