@@ -59,6 +59,8 @@ public class EchoTest {
         HashMap <String,String> testData = new HashMap<>();
         testData.put ("foo1","bar1");
         testData.put ("foo2","bar2");
+
+
         String testDataString = testData.toString();
 
         given()
@@ -114,7 +116,7 @@ public class EchoTest {
         given()
 
                 .spec(BaseTest.baseSpecificationBefore())
-                //.body(text)
+                .body(text)
                 .when().patch("delete")
                 .then()
                 //.body("arg",equalTo("<{}>"))
