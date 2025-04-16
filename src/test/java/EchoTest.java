@@ -108,7 +108,6 @@ public class EchoTest {
 
     @Test
     public void deleteRequest () {
-        RestAssured.defaultParser = Parser.JSON;
 
         String text = "This is expected to be sent back as part of response body.";
         String text1 = "This is expected to be sent back as part of response body.";
@@ -116,7 +115,7 @@ public class EchoTest {
 
                 .spec(BaseTest.baseSpecificationBefore())
                 .body(text)
-                .when().patch("delete")
+                .when().delete("delete")
                 .then()
                 //.body("arg",equalTo("<{}>"))
                 .body("data", equalTo(text1))
