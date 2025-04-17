@@ -12,7 +12,7 @@ public class EchoTest {
 
     @Test
     public void GetRequest () {
-        // Ожидаемые значения
+
         HashMap <String,String> headers = new HashMap<>();
         headers.put ("host","postman-echo.com");
         headers.put ("x_request_start", "t1744653162.807");
@@ -26,13 +26,12 @@ public class EchoTest {
                 .spec(BaseTest.baseSpecificationBefore())
                 .when().get("get") // Замените на ваш эндпоинт
                 .then()
-                //.log().body()
+                .body("arg",equalTo(null))
                 .body("headers.host", equalTo(headers.get("host")))
                 .body("headers.connection", equalTo(headers.get("connection")))
                 .body("headers.x_forwarded_port", equalTo(headers.get("x_forwarded_port")))
                 .body("headers.x_amzn_trace_id", equalTo(headers.get("x_amzn_trace_id")))
                 .body("headers.accept", equalTo(headers.get("accept")))
-                //.log().all()
                 .spec(BaseTest.baseSpecificationAfter200());
 
     }
@@ -48,7 +47,7 @@ public class EchoTest {
                 .body(jsonString)
                 .when().post("post")
                 .then()
-                //.log().body()
+                .body("arg",equalTo(null))
                 .body("data", equalTo(jsonString))
                 .body("url", equalTo("https://postman-echo.com/post"))
                 .spec(BaseTest.baseSpecificationAfter200());
@@ -67,7 +66,7 @@ public class EchoTest {
                 .body(testDataString)
                 .when().post("post")
                 .then()
-                //.log().body()
+                .body("arg",equalTo(null))
                 .body("data", equalTo(testDataString))
                 .body("url", equalTo("https://postman-echo.com/post"))
                 .spec(BaseTest.baseSpecificationAfter200());
@@ -85,6 +84,7 @@ public class EchoTest {
                 .body(text)
                 .when().put("put")
                 .then()
+                .body("arg",equalTo(null))
                 .body("data", equalTo(text1))
                 .body("url", equalTo("https://postman-echo.com/put"))
                 .spec(BaseTest.baseSpecificationAfter200());
@@ -101,6 +101,7 @@ public class EchoTest {
                 .body(text)
                 .when().patch("patch")
                 .then()
+                .body("arg",equalTo(null))
                 .body("data", equalTo(text1))
                 .body("url", equalTo("https://postman-echo.com/patch"))
                 .spec(BaseTest.baseSpecificationAfter200());
@@ -117,7 +118,7 @@ public class EchoTest {
                 .body(text)
                 .when().delete("delete")
                 .then()
-                //.body("arg",equalTo("<{}>"))
+                .body("arg",equalTo(null))
                 .body("data", equalTo(text1))
                 .body("url", equalTo("https://postman-echo.com/delete"))
                 .spec(BaseTest.baseSpecificationAfter200());
